@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>404 - Không Tìm Thấy Trang</title>
+  <meta name="description" content="Trang bạn đang tìm kiếm không tồn tại hoặc đã bị di chuyển. Lỗi 404 Nginx Web Server." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet" />
+  <style>
+    /* ========================================================
+       RESET & THEME VARIABLES
+       ======================================================== */
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --bg-dark: #070814;
+      --bg-card: rgba(15, 17, 38, 0.65);
+      --border-card: rgba(168, 85, 247, 0.22);
+      --primary-purple: #8b5cf6;
+      --primary-pink: #ec4899;
+      --primary-cyan: #06b6d4;
+      --glow-purple: rgba(139, 92, 246, 0.45);
+      --glow-pink: rgba(236, 72, 153, 0.35);
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --text-subtle: #64748b;
+      --badge-bg: rgba(236, 72, 153, 0.12);
+      --badge-border: rgba(236, 72, 153, 0.35);
+    }
+
+    html, body {
+      width: 100%;
+      min-height: 100vh;
+      font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      overflow-x: hidden;
+      position: relative;
+    }
+
+    /* ========================================================
+       COSMIC BACKGROUND & GLOW EFFECTS
+       ======================================================== */
+    #stars-canvas {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    .nebula-glow {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(120px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.6;
+    }
+
+    .nebula-1 {
+      top: 10%;
+      left: 15%;
+      width: 450px;
+      height: 450px;
+      background: radial-gradient(circle, rgba(139, 92, 246, 0.32), transparent 70%);
+      animation: float-nebula 14s ease-in-out infinite alternate;
+    }
+
+    .nebula-2 {
+      bottom: 15%;
+      right: 15%;
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(236, 72, 153, 0.25), transparent 70%);
+      animation: float-nebula 18s ease-in-out infinite alternate-reverse;
+    }
+
+    @keyframes float-nebula {
+      0% { transform: translate(0, 0) scale(1); }
+      100% { transform: translate(40px, -30px) scale(1.12); }
+    }
+
+    /* ========================================================
+       CONTAINER & LAYOUT
+       ======================================================== */
+    .viewport-wrapper {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 2.5rem 1.5rem;
+      text-align: center;
+    }
+
+    /* ========================================================
+       ASTRONAUT ILLUSTRATION (INLINE SVG)
+       ======================================================== */
+    .astronaut-scene {
+      position: relative;
+      width: 170px;
+      height: 170px;
+      margin-bottom: -1rem;
+      animation: astronaut-hover 6s ease-in-out infinite;
+      filter: drop-shadow(0 15px 30px rgba(139, 92, 246, 0.35));
+    }
+
+    @keyframes astronaut-hover {
+      0%, 100% { transform: translateY(0px) rotate(-2deg); }
+      50% { transform: translateY(-22px) rotate(3deg); }
+    }
+
+    .astronaut-scene svg {
+      width: 100%;
+      height: 100%;
+      overflow: visible;
+    }
+
+    /* ========================================================
+       404 GLOW TYPOGRAPHY
+       ======================================================== */
+    .error-number {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(6.5rem, 16vw, 11rem);
+      font-weight: 700;
+      line-height: 0.95;
+      letter-spacing: -4px;
+      background: linear-gradient(135deg, #ffffff 0%, #d8b4fe 30%, #ec4899 70%, #06b6d4 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      filter: drop-shadow(0 0 35px rgba(168, 85, 247, 0.55));
+      animation: pulse-glow 4s ease-in-out infinite;
+      user-select: none;
+      margin-bottom: 0.5rem;
+    }
+
+    @keyframes pulse-glow {
+      0%, 100% { filter: drop-shadow(0 0 25px rgba(168, 85, 247, 0.45)); }
+      50% { filter: drop-shadow(0 0 45px rgba(236, 72, 153, 0.75)); }
+    }
+
+    /* ========================================================
+       GLASSMORPHISM CONTENT CARD
+       ======================================================== */
+    .error-card {
+      width: 100%;
+      max-width: 580px;
+      background: var(--bg-card);
+      border: 1px solid var(--border-card);
+      border-radius: 28px;
+      padding: 2.5rem 2.5rem 2.2rem;
+      backdrop-filter: blur(24px);
+      -webkit-backdrop-filter: blur(24px);
+      box-shadow: 0 20px 50px -10px rgba(0, 0, 0, 0.6),
+                  inset 0 1px 1px rgba(255, 255, 255, 0.15);
+      animation: card-appear 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
+    }
+
+    @keyframes card-appear {
+      from { opacity: 0; transform: translateY(35px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Pill Badge */
+    .status-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.35rem 1rem;
+      border-radius: 9999px;
+      background: var(--badge-bg);
+      border: 1px solid var(--badge-border);
+      color: #f472b6;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      margin-bottom: 1.25rem;
+    }
+
+    .status-badge .ping-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background-color: #ec4899;
+      box-shadow: 0 0 8px #ec4899;
+      animation: blink 2s infinite ease-in-out;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 1; transform: scale(1); }
+      50% { opacity: 0.4; transform: scale(0.75); }
+    }
+
+    .error-card h1 {
+      font-size: clamp(1.5rem, 4vw, 1.95rem);
+      font-weight: 700;
+      line-height: 1.3;
+      margin-bottom: 0.85rem;
+      color: #ffffff;
+      letter-spacing: -0.02em;
+    }
+
+    .error-card p.description {
+      color: var(--text-muted);
+      font-size: 1rem;
+      font-weight: 400;
+      line-height: 1.65;
+      margin-bottom: 1.75rem;
+    }
+
+    /* Diagnosis Info Box */
+    .diagnosis-box {
+      display: flex;
+      flex-direction: column;
+      gap: 0.35rem;
+      background: rgba(7, 8, 20, 0.5);
+      border: 1px dashed rgba(148, 163, 184, 0.22);
+      border-radius: 12px;
+      padding: 0.85rem 1.25rem;
+      margin-bottom: 2rem;
+      font-family: 'Space Grotesk', monospace;
+      font-size: 0.82rem;
+      text-align: left;
+    }
+
+    .diagnosis-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      overflow: hidden;
+    }
+
+    .diagnosis-label {
+      color: var(--text-subtle);
+    }
+
+    .diagnosis-value {
+      color: #38bdf8;
+      font-weight: 500;
+      max-width: 280px;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    /* ========================================================
+       ACTION BUTTONS
+       ======================================================== */
+    .action-group {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      padding: 0.85rem 1.85rem;
+      border-radius: 50px;
+      font-size: 0.95rem;
+      font-weight: 600;
+      text-decoration: none;
+      cursor: pointer;
+      border: none;
+      outline: none;
+      font-family: inherit;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #8b5cf6 0%, #ec4899 100%);
+      color: #ffffff;
+      box-shadow: 0 4px 20px var(--glow-purple);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px) scale(1.02);
+      box-shadow: 0 8px 30px var(--glow-pink);
+    }
+
+    .btn-primary:active {
+      transform: translateY(0) scale(0.99);
+    }
+
+    .btn-secondary {
+      background: rgba(255, 255, 255, 0.04);
+      color: #cbd5e1;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255, 255, 255, 0.09);
+      color: #ffffff;
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-2px);
+    }
+
+    .btn-secondary:active {
+      transform: translateY(0);
+    }
+
+    /* ========================================================
+       FOOTER BRANDING
+       ======================================================== */
+    .footer-credits {
+      margin-top: 2rem;
+      font-size: 0.8rem;
+      color: var(--text-subtle);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .footer-credits .divider {
+      opacity: 0.4;
+    }
+
+    /* ========================================================
+       RESPONSIVE ADJUSTMENTS
+       ======================================================== */
+    @media (max-width: 540px) {
+      .error-card {
+        padding: 2rem 1.5rem;
+        border-radius: 20px;
+      }
+      .action-group {
+        flex-direction: column;
+        width: 100%;
+      }
+      .btn {
+        width: 100%;
+      }
+      .diagnosis-row {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.15rem;
+      }
+      .diagnosis-value {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Twinkling Stars Canvas -->
+  <canvas id="stars-canvas" aria-hidden="true"></canvas>
+
+  <!-- Ambient Glow Nebulas -->
+  <div class="nebula-glow nebula-1" aria-hidden="true"></div>
+  <div class="nebula-glow nebula-2" aria-hidden="true"></div>
+
+  <!-- Viewport Main Layout -->
+  <main class="viewport-wrapper" role="main">
+
+    <!-- Floating Astronaut SVG -->
+    <div class="astronaut-scene" aria-hidden="true">
+      <svg viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <defs>
+          <linearGradient id="astroSuit" x1="0%" y1="0%" x2="100%" y2="100%">
+            <stop offset="0%" stop-color="#f1f5f9" />
+            <stop offset="100%" stop-color="#cbd5e1" />
+          </linearGradient>
+          <radialGradient id="visorGrad" cx="35%" cy="30%" r="70%">
+            <stop offset="0%" stop-color="#38bdf8" />
+            <stop offset="45%" stop-color="#818cf8" />
+            <stop offset="100%" stop-color="#1e1b4b" />
+          </radialGradient>
+          <radialGradient id="glowHalo" cx="50%" cy="50%" r="50%">
+            <stop offset="0%" stop-color="#c084fc" stop-opacity="0.4" />
+            <stop offset="100%" stop-color="#c084fc" stop-opacity="0" />
+          </radialGradient>
+        </defs>
+
+        <!-- Zero-gravity Glow Halo -->
+        <circle cx="100" cy="80" r="54" fill="url(#glowHalo)" />
+
+        <!-- Suit Body -->
+        <ellipse cx="100" cy="132" rx="40" ry="48" fill="url(#astroSuit)" />
+
+        <!-- Helmet -->
+        <circle cx="100" cy="80" r="36" fill="#e2e8f0" stroke="#cbd5e1" stroke-width="2" />
+        <!-- Reflective Visor -->
+        <ellipse cx="100" cy="82" rx="23" ry="19" fill="url(#visorGrad)" />
+        <ellipse cx="94" cy="77" rx="6" ry="3" fill="#ffffff" opacity="0.65" transform="rotate(-15 94 77)" />
+
+        <!-- Left Arm -->
+        <rect x="52" y="112" width="18" height="36" rx="9" fill="url(#astroSuit)" transform="rotate(-25 61 130)" />
+        <!-- Right Arm waving -->
+        <rect x="130" y="105" width="18" height="38" rx="9" fill="url(#astroSuit)" transform="rotate(35 139 124)" />
+
+        <!-- Backpack Jetpack -->
+        <rect x="80" y="118" width="40" height="26" rx="6" fill="#8b5cf6" />
+        <rect x="86" y="125" width="10" height="5" rx="2.5" fill="#38bdf8" />
+        <rect x="104" y="125" width="10" height="5" rx="2.5" fill="#ec4899" />
+
+        <!-- Legs -->
+        <rect x="74" y="170" width="18" height="26" rx="8" fill="#94a3b8" />
+        <rect x="108" y="170" width="18" height="26" rx="8" fill="#94a3b8" />
+
+        <!-- Floating Cosmic Particles -->
+        <circle cx="48" cy="55" r="2" fill="#ec4899" opacity="0.8" />
+        <circle cx="158" cy="62" r="2.5" fill="#38bdf8" opacity="0.9" />
+        <circle cx="38" cy="115" r="1.5" fill="#ffffff" opacity="0.7" />
+        <circle cx="164" cy="120" r="1.8" fill="#c084fc" opacity="0.8" />
+      </svg>
+    </div>
+
+    <!-- 404 Glowing Number -->
+    <div class="error-number" aria-label="Mã lỗi 404">404</div>
+
+    <!-- Glassmorphic Card -->
+    <article class="error-card">
+      <div class="status-badge">
+        <span class="ping-dot" aria-hidden="true"></span>
+        <span>Lỗi 404 • Not Found</span>
+      </div>
+
+      <h1>Trang Không Tồn Tại</h1>
+
+      <p class="description">
+        Trang bạn đang tìm kiếm dường như đã lạc vào không gian vô tận hoặc đường dẫn tĩnh đã thay đổi. Vui lòng kiểm tra lại URL hoặc quay về trang chủ.
+      </p>
+
+      <!-- Live Diagnosis Box -->
+      <div class="diagnosis-box" aria-label="Thông tin chẩn đoán">
+        <div class="diagnosis-row">
+          <span class="diagnosis-label">Đường dẫn yêu cầu:</span>
+          <span class="diagnosis-value" id="current-path">/invalid-path</span>
+        </div>
+        <div class="diagnosis-row">
+          <span class="diagnosis-label">Máy chủ Web:</span>
+          <span class="diagnosis-value">Nginx (Internal Protected)</span>
+        </div>
+        <div class="diagnosis-row">
+          <span class="diagnosis-label">Mã trạng thái:</span>
+          <span class="diagnosis-value" style="color: #ec4899;">404 Not Found</span>
+        </div>
+      </div>
+
+      <!-- Action Navigation -->
+      <nav class="action-group" aria-label="Điều hướng">
+        <a href="/" id="btn-home" class="btn btn-primary">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <path d="M3 9.5L12 3l9 6.5V20a1 1 0 0 1-1 1H4a1 1 0 0 1-1-1V9.5z"/>
+            <polyline points="9 21 9 12 15 12 15 21"/>
+          </svg>
+          Về Trang Chủ
+        </a>
+
+        <button id="btn-back" class="btn btn-secondary" onclick="window.history.length > 1 ? window.history.back() : window.location.href='/'">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+            <line x1="19" y1="12" x2="5" y2="12"/>
+            <polyline points="12 19 5 12 12 5"/>
+          </svg>
+          Quay Lại
+        </button>
+      </nav>
+    </article>
+
+    <!-- Footer Meta -->
+    <footer class="footer-credits">
+      <span>Nginx Web Server</span>
+      <span class="divider">•</span>
+      <span>DevOps Fundamentals</span>
+      <span class="divider">•</span>
+      <span>Session 03 - Exercise 2</span>
+    </footer>
+
+  </main>
+
+  <!-- Interactive Dynamic Starfield Canvas Script -->
+  <script>
+    (function () {
+      // Hiển thị pathname hiện tại trong diagnostic box
+      try {
+        var pathEl = document.getElementById('current-path');
+        if (pathEl) {
+          pathEl.textContent = window.location.pathname || '/';
+        }
+      } catch (e) {}
+
+      // Tạo hiệu ứng Starfield chuyển động
+      var canvas = document.getElementById('stars-canvas');
+      if (!canvas) return;
+      var ctx = canvas.getContext('2d');
+      var width, height, stars = [];
+      var STAR_COUNT = 150;
+
+      function random(min, max) {
+        return Math.random() * (max - min) + min;
+      }
+
+      function initStars() {
+        width = canvas.width = window.innerWidth;
+        height = canvas.height = window.innerHeight;
+        stars = [];
+        for (var i = 0; i < STAR_COUNT; i++) {
+          stars.push({
+            x: random(0, width),
+            y: random(0, height),
+            radius: random(0.4, 1.8),
+            speed: random(0.08, 0.35),
+            alpha: random(0.2, 0.9),
+            twinkleSpeed: random(1, 3),
+            twinklePhase: random(0, Math.PI * 2)
+          });
+        }
+      }
+
+      function render() {
+        ctx.clearRect(0, 0, width, height);
+        var time = performance.now() / 1000;
+
+        for (var i = 0; i < stars.length; i++) {
+          var star = stars[i];
+          var currentAlpha = star.alpha * (0.6 + 0.4 * Math.sin(time * star.twinkleSpeed + star.twinklePhase));
+
+          ctx.beginPath();
+          ctx.arc(star.x, star.y, star.radius, 0, Math.PI * 2);
+          ctx.fillStyle = 'rgba(255, 255, 255, ' + currentAlpha + ')';
+          ctx.fill();
+
+          star.y -= star.speed;
+          if (star.y + star.radius < 0) {
+            star.y = height + star.radius;
+            star.x = random(0, width);
+          }
+        }
+
+        requestAnimationFrame(render);
+      }
+
+      window.addEventListener('resize', initStars);
+      initStars();
+      render();
+    })();
+  </script>
+
+</body>
+</html>

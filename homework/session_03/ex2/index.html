@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Trang Chủ - My Web Server Nginx</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700&display=swap" rel="stylesheet" />
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      background: #0b0f19;
+      color: #f1f5f9;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .card {
+      background: rgba(30, 41, 59, 0.7);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      border-radius: 20px;
+      padding: 2.5rem;
+      max-width: 520px;
+      width: 100%;
+      text-align: center;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    }
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #38bdf8, #818cf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p {
+      color: #94a3b8;
+      line-height: 1.6;
+      margin-bottom: 1.5rem;
+    }
+    .test-links {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+    .test-btn {
+      display: block;
+      padding: 0.75rem 1.25rem;
+      border-radius: 10px;
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.2s;
+    }
+    .btn-test {
+      background: rgba(239, 68, 68, 0.15);
+      color: #f87171;
+      border: 1px solid rgba(239, 68, 68, 0.3);
+    }
+    .btn-test:hover {
+      background: rgba(239, 68, 68, 0.25);
+    }
+    .btn-internal {
+      background: rgba(234, 179, 8, 0.15);
+      color: #facc15;
+      border: 1px solid rgba(234, 179, 8, 0.3);
+    }
+    .btn-internal:hover {
+      background: rgba(234, 179, 8, 0.25);
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>🚀 Nginx Web Server</h1>
+    <p>Trang chủ chính thức của học viên hoạt động thành công tại thư mục web root <code>/var/www/my-web/html/</code>.</p>
+    <div class="test-links">
+      <a href="/invalid-path-demo" class="test-btn btn-test">
+        🔍 Test 1: Bấm để thử link không tồn tại (/invalid-path-demo)
+      </a>
+      <a href="/404.html" class="test-btn btn-internal">
+        🔒 Test 2: Bấm để thử truy cập trực tiếp (/404.html)
+      </a>
+    </div>
+  </div>
+</body>
+</html>
