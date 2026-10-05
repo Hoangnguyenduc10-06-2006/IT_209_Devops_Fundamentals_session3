@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Khu Vực Quản Trị - Restricted Admin Area</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      min-height: 100vh;
+      background: radial-gradient(circle at top, #1e1b4b 0%, #090a16 100%);
+      color: #f8fafc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+    .admin-card {
+      background: rgba(15, 23, 42, 0.75);
+      border: 1px solid rgba(139, 92, 246, 0.3);
+      border-radius: 24px;
+      padding: 2.5rem;
+      max-width: 560px;
+      width: 100%;
+      box-shadow: 0 25px 60px -15px rgba(0, 0, 0, 0.7),
+                  0 0 30px rgba(139, 92, 246, 0.15);
+      backdrop-filter: blur(20px);
+      text-align: center;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 9999px;
+      background: rgba(16, 185, 129, 0.15);
+      border: 1px solid rgba(16, 185, 129, 0.4);
+      color: #34d399;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      margin-bottom: 1.25rem;
+    }
+    .badge .dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: #10b981;
+      box-shadow: 0 0 8px #10b981;
+    }
+    h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.85rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+      background: linear-gradient(135deg, #ffffff 30%, #c084fc 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    p.subtitle {
+      color: #94a3b8;
+      font-size: 0.95rem;
+      line-height: 1.6;
+      margin-bottom: 2rem;
+    }
+    .info-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      text-align: left;
+    }
+    .info-item {
+      background: rgba(30, 41, 59, 0.5);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: 12px;
+      padding: 1rem;
+    }
+    .info-label {
+      font-size: 0.75rem;
+      color: #64748b;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+    .info-value {
+      font-family: monospace;
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #38bdf8;
+    }
+    .btn-return {
+      display: inline-block;
+      padding: 0.75rem 1.75rem;
+      background: linear-gradient(135deg, #8b5cf6, #ec4899);
+      color: #ffffff;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: all 0.25s ease;
+      box-shadow: 0 4px 20px rgba(139, 92, 246, 0.4);
+    }
+    .btn-return:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 30px rgba(236, 72, 153, 0.6);
+    }
+  </style>
+</head>
+<body>
+  <div class="admin-card">
+    <div class="badge">
+      <span class="dot"></span>
+      <span>Xác thực thành công</span>
+    </div>
+    <h1>Bảng Điều Khiển Quản Trị</h1>
+    <p class="subtitle">
+      Bạn đã vượt qua lớp bảo vệ <strong>HTTP Basic Authentication</strong> với tài khoản <code>admin_user</code>.
+    </p>
+
+    <div class="info-grid">
+      <div class="info-item">
+        <div class="info-label">Đường dẫn bảo vệ</div>
+        <div class="info-value">/admin/</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Tài khoản</div>
+        <div class="info-value">admin_user</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Vị trí .htpasswd</div>
+        <div class="info-value">/etc/nginx/</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Mã phản hồi</div>
+        <div class="info-value" style="color: #34d399;">200 OK</div>
+      </div>
+    </div>
+
+    <a href="/" class="btn-return">← Quay Lại Trang Chủ</a>
+  </div>
+</body>
+</html>
